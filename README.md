@@ -1,4 +1,4 @@
-This demo works with either [the F3 board used by embedded-rust book](https://rust-embedded.github.io/book/intro/hardware.html) or [the F469 board used by Specter DIY](https://github.com/cryptoadvance/specter-diy/blob/master/docs/shopping.md#discovery-board).
+This demo works with [the F3 board used by embedded-rust book](https://rust-embedded.github.io/book/intro/hardware.html), [the F469 board used by Specter DIY](https://github.com/cryptoadvance/specter-diy/blob/master/docs/shopping.md#discovery-board) and other STM32 boards.
 
 In order to run the demo, first follow setup instructions for [The Embedded Rust Book](https://rust-embedded.github.io/book/intro/install.html).
 
@@ -10,33 +10,33 @@ rustup override set nightly
 
 You'll need two terminals.
 
+### Supported boards
+
+| Board         | OpenOCD conf              | Memory map      |
+|---------------|---------------------------|-----------------|
+| F3 family     | f3.openocd.cfg            | f3.x            |
+| F469          | f469.openocd.cfg          | f469.x          |
+| STM32F407VET6 | STM32F407VET6.openocd.cfg | STM32F407VET6.x |
+
 ### Terminal 1:
 
-If you're using the F3 board:
+Run in the terminal:
 
 ```
-openocd -f f3.openocd.cfg
+openocd -f <OpenOCD conf>
 ```
 
-If you're using the F469 board:
-
-```
-openocd -f f469.openocd.cfg
-```
+The name of the file `<OpenOCD conf>` can be found in the section `Supported boards`.
 
 ### Terminal 2
 
-If you're using F3 board:
+Run in the terminal:
 
 ```
-cargo run --release
+X=<Memory map> cargo run --release
 ```
 
-If you're using F469 board:
-
-```
-X=f469.x cargo run --release
-```
+The name of the file `<Memory map>` can be found in the section `Supported boards`.
 
 This should drop "terminal 2" into a gbd debugging session. Type `continue` and hit enter, twice.
 
